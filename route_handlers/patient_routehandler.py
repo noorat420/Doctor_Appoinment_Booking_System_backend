@@ -1,5 +1,6 @@
 # Patient Controller - Business logic for patient operations
-from src.repositories import DoctorRepository, AvailabilityRepository
+from repositories.doctor_repository import DoctorRepository
+from repositories.availability_repository import AvailabilityRepository
 
 
 class PatientController:

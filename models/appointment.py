@@ -1,6 +1,6 @@
 # Appointment model
 from datetime import datetime
-from src.extensions import db
+from extensions import db
 
 class Appointment(db.Model):
     __tablename__ = "appointments"

@@ -1,4 +1,4 @@
-# Configuration settings
+
 import os
 
 class Config:

@@ -1,32 +1,37 @@
 # Auth Controller - Business logic for authentication
 from flask import current_app
 from flask_jwt_extended import create_access_token
-
-from src.repositories import UserRepository, DoctorRepository
-from src.utils.security import hash_password, verify_password
+from repositories.user_repository import UserRepository
+from repositories.doctor_repository import DoctorRepository
+from utils.security import hash_password, verify_password
 
 
 class AuthController:
+
     @staticmethod
     def register(name: str, email: str, password: str, role: str, invitation_code: str = None):
-        # Validate required fields
+      
         if not all([name, email, password, role]):
-            return {"error": "Missing required fields"}, 400
+            return {"error": "All fields are required"}, 400
 
         if role not in ["doctor", "patient"]:
             return {"error": "Invalid role"}, 400
 
-        # Validate doctor invitation code
+    
         if role == "doctor":
             if not invitation_code:
-                return {"error": "Invitation code is required for doctor registration"}, 400
-            valid_code = current_app.config.get("DOCTOR_INVITATION_CODE", "DOC2024SECRET")
-            if invitation_code != valid_code:
-                return {"error": "Invalid invitation code"}, 403
+                return {"error": "Invitation code is required"}, 400
 
-        # Check if email exists
+            valid_code = current_app.config.get(
+                "DOCTOR_INVITATION_CODE", "DOC2024SECRET"
+            )
+
+            if invitation_code != valid_code:
+                return {"error": "Invitation code is invalid"}, 403
+
+    
         if UserRepository.email_exists(email):
-            return {"error": "Email already exists"}, 409
+            return {"error": "User already exists with this email"}, 409
 
         # Create user
         user = UserRepository.create(
@@ -36,7 +41,7 @@ class AuthController:
             role=role
         )
 
-        # Create doctor profile if registering as doctor
+        # Create doctor profile
         if role == "doctor":
             DoctorRepository.create(
                 user_id=user.id,
@@ -49,12 +54,17 @@ class AuthController:
     @staticmethod
     def login(email: str, password: str):
         if not email or not password:
-            return {"error": "Email and password required"}, 400
+            return {"error": "Email and password are required"}, 400
 
         user = UserRepository.get_by_email(email)
 
-        if not user or not verify_password(user.password_hash, password):
-            return {"error": "Invalid credentials"}, 401
+     
+        if not user:
+            return {"error": "User does not exist"}, 404
+
+   
+        if not verify_password(user.password_hash, password):
+            return {"error": "Incorrect password"}, 401
 
         token = create_access_token(
             identity=str(user.id),
@@ -76,4 +86,3 @@ class AuthController:
             "email": user.email,
             "role": user.role,
         }, 200
-

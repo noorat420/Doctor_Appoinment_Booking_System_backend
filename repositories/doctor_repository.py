@@ -1,6 +1,7 @@
 # Doctor Repository - Database operations for Doctor model
-from src.extensions import db
-from src.models import Doctor, User
+from extensions import db
+from models.user import User
+from models.doctor import Doctor
 
 
 class DoctorRepository:

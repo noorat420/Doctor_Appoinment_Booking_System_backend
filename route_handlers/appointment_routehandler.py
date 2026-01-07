@@ -1,11 +1,9 @@
 # Appointment Controller - Business logic for appointments
-from src.repositories import (
-    UserRepository,
-    DoctorRepository,
-    AppointmentRepository,
-    AvailabilityRepository
-)
-from src.services.email_service import (
+from repositories.user_repository import UserRepository
+from repositories.doctor_repository import DoctorRepository  
+from repositories.availability_repository import AvailabilityRepository
+from repositories.appointment_repository import AppointmentRepository
+from services.email_service import (
     send_appointment_confirmation,
     send_appointment_cancellation
 )

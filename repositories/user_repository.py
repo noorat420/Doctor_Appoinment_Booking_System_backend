@@ -1,6 +1,6 @@
 # User Repository - Database operations for User model
-from src.extensions import db
-from src.models import User
+from extensions import db
+from models.user import User
 
 
 class UserRepository:

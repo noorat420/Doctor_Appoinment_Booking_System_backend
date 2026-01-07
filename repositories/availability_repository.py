@@ -1,7 +1,7 @@
 # Availability Repository - Database operations for AvailabilitySlot model
 from datetime import date, time
-from src.extensions import db
-from src.models import AvailabilitySlot
+from extensions import db
+from models.availability import AvailabilitySlot
 
 
 class AvailabilityRepository:

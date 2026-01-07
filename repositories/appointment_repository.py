@@ -1,6 +1,6 @@
 # Appointment Repository - Database operations for Appointment model
-from src.extensions import db
-from src.models import Appointment
+from extensions import db
+from models.appointment import Appointment
 
 
 class AppointmentRepository:

@@ -1,7 +1,8 @@
 # Availability Controller - Business logic for availability slots
 from datetime import datetime
 
-from src.repositories import DoctorRepository, AvailabilityRepository
+from repositories.doctor_repository import DoctorRepository
+from repositories.availability_repository import AvailabilityRepository
 
 
 class AvailabilityController:

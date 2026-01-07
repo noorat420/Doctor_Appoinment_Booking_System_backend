@@ -1,5 +1,5 @@
 # Doctor model
-from src.extensions import db
+from extensions import db
 
 class Doctor(db.Model):
     __tablename__ = "doctors"
@@ -12,7 +12,7 @@ class Doctor(db.Model):
         unique=True
     )
 
-    designation = db.Column(db.String(50))  # e.g., "Dr.", "MD", "MBBS"
+    designation = db.Column(db.String(50))
     specialization = db.Column(db.String(100))
 
     user = db.relationship("User", backref="doctor_profile")

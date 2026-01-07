@@ -1,5 +1,5 @@
 # Availability model
-from src.extensions import db
+from extensions import db
 
 class AvailabilitySlot(db.Model):
     __tablename__ = "availability_slots"

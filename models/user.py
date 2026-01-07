@@ -1,6 +1,6 @@
 # User model
 from datetime import datetime
-from src.extensions import db
+from extensions import db
 
 class User(db.Model):
     __tablename__ = "users"
