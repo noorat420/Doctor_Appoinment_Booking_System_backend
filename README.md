@@ -19,45 +19,6 @@ A Flask-based REST API for managing doctor appointments, built with clean archit
 - **Email**: Resend
 - **Server**: Gunicorn (production)
 
-## Project Structure
-
-```
-backend/
-├── app.py                 # Main entry point with all routes
-├── config.py              # Configuration settings
-├── Procfile               # Production server config
-├── requirements.txt       # Python dependencies
-│
-└── src/
-    ├── controllers/       # Business logic layer
-    │   ├── auth_controller.py
-    │   ├── doctor_controller.py
-    │   ├── patient_controller.py
-    │   ├── appointment_controller.py
-    │   └── availability_controller.py
-    │
-    ├── repositories/      # Database access layer
-    │   ├── user_repository.py
-    │   ├── doctor_repository.py
-    │   ├── appointment_repository.py
-    │   └── availability_repository.py
-    │
-    ├── models/            # SQLAlchemy models
-    │   ├── user.py
-    │   ├── doctor.py
-    │   ├── appointment.py
-    │   └── availability.py
-    │
-    ├── services/          # External services
-    │   └── email_service.py
-    │
-    ├── utils/             # Utilities
-    │   ├── decorators.py
-    │   └── security.py
-    │
-    └── extensions.py      # Flask extensions (db, jwt)
-```
-
 ## API Endpoints
 
 ### Authentication
