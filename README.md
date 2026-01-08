@@ -19,7 +19,6 @@ A Flask-based REST API for managing doctor appointments, built with clean archit
 - **Email**: Resend
 - **Server**: Gunicorn (production)
 
-
 ## API Endpoints
 
 ### Authentication
