@@ -8,11 +8,10 @@ from repositories.availability_repository import AvailabilityRepository
 class AvailabilityController:
     @staticmethod
     def create_slot(user_id: int, date_str: str, start_time_str: str, end_time_str: str):
-        # Validate required fields
+      
         if not all([date_str, start_time_str, end_time_str]):
             return {"error": "Date, start time and end time are required"}, 400
 
-        # Parse date and time
         try:
             slot_date = datetime.strptime(date_str, "%Y-%m-%d").date()
             start_time = datetime.strptime(start_time_str, "%H:%M").time()
@@ -20,11 +19,11 @@ class AvailabilityController:
         except ValueError:
             return {"error": "Invalid date or time format"}, 400
 
-        # Validate time range
+       
         if start_time >= end_time:
             return {"error": "End time must be after start time"}, 400
 
-        # Get doctor profile
+      
         doctor = DoctorRepository.get_by_user_id(user_id)
         if not doctor:
             return {"error": "Doctor profile not found"}, 404

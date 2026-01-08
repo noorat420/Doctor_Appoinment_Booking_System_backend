@@ -1,7 +1,7 @@
 import resend
 from flask import current_app
 
-resend.api_key = None  # set dynamically
+resend.api_key = None 
 def send_appointment_confirmation(
     to_email: str,
     doctor_name: str,
@@ -27,7 +27,6 @@ def send_appointment_confirmation(
             """
         })
     except Exception as e:
-        # Log later (never crash booking)
         print("Email failed:", str(e))
 
 

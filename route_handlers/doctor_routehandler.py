@@ -40,9 +40,8 @@ class DoctorController:
 
     @staticmethod
     def delete_account(user_id: int):
-        # First delete doctor profile
+      
         DoctorRepository.delete_by_user_id(user_id)
-        # Then delete user account
         deleted = UserRepository.delete(user_id)
         
         if deleted:

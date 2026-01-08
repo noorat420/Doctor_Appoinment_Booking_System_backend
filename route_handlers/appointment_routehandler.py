@@ -120,7 +120,7 @@ class AppointmentController:
         if not appointment:
             return {"error": "Appointment not found"}, 404
 
-        # Ownership check
+    
         if role == "patient":
             if appointment.patient_id != user_id:
                 return {"error": "Access denied"}, 403
@@ -134,12 +134,12 @@ class AppointmentController:
         if appointment.status == "cancelled":
             return {"error": "Appointment already cancelled"}, 409
 
-        # Cancel appointment
+       
         AppointmentRepository.cancel(appointment)
         AvailabilityRepository.mark_as_available(appointment.slot)
         AppointmentRepository.commit()
 
-        # Send cancellation emails
+     
         try:
             patient = UserRepository.get_by_id(appointment.patient_id)
             doctor = DoctorRepository.get_by_id(appointment.doctor_id)
