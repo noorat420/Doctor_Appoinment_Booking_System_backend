@@ -17,5 +17,3 @@ class AvailabilitySlot(db.Model):
 
     is_booked = db.Column(db.Boolean, default=False)
 
-    doctor = db.relationship("Doctor", backref="availability_slots")
-

@@ -16,3 +16,10 @@ class Doctor(db.Model):
     specialization = db.Column(db.String(100))
 
     user = db.relationship("User", backref="doctor_profile")
+    availability_slots = db.relationship('AvailabilitySlot', backref='doctor', cascade='all, delete-orphan')
+    appointments = db.relationship(
+        'Appointment',
+        backref='doctor',
+        cascade='all, delete-orphan',
+        lazy=True
+    )

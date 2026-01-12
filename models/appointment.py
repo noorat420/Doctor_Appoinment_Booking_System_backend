@@ -18,7 +18,5 @@ class Appointment(db.Model):
 
     status = db.Column(db.String(20), default="booked")
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
-
-    doctor = db.relationship("Doctor")
     patient = db.relationship("User")
     slot = db.relationship("AvailabilitySlot")
