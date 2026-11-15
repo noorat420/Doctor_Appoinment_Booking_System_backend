@@ -1,6 +1,6 @@
 # User model
-from datetime import datetime
 from extensions import db
+from utils.timeutils import utcnow_naive
 
 class User(db.Model):
     __tablename__ = "users"
@@ -10,4 +10,4 @@ class User(db.Model):
     email = db.Column(db.String(120), unique=True, nullable=False)
     password_hash = db.Column(db.String(255), nullable=False)
     role = db.Column(db.String(20), nullable=False)  # doctor / patient
-    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    created_at = db.Column(db.DateTime, default=utcnow_naive)

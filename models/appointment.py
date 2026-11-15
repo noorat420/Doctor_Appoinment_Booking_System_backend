@@ -1,6 +1,6 @@
 # Appointment model
-from datetime import datetime
 from extensions import db
+from utils.timeutils import utcnow_naive
 
 class Appointment(db.Model):
     __tablename__ = "appointments"
@@ -17,6 +17,6 @@ class Appointment(db.Model):
     )
 
     status = db.Column(db.String(20), default="booked")
-    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    created_at = db.Column(db.DateTime, default=utcnow_naive)
     patient = db.relationship("User")
     slot = db.relationship("AvailabilitySlot")
