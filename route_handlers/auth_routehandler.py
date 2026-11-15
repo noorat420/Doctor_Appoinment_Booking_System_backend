@@ -22,9 +22,7 @@ class AuthController:
             if not invitation_code:
                 return {"error": "Invitation code is required"}, 400
 
-            valid_code = current_app.config.get(
-                "DOCTOR_INVITATION_CODE", "DOC2024SECRET"
-            )
+            valid_code = current_app.config["DOCTOR_INVITATION_CODE"]
 
             if invitation_code != valid_code:
                 return {"error": "Invitation code is invalid"}, 403
